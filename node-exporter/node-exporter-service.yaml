@@ -3,12 +3,13 @@ kind: Service
 metadata:
   labels:
     app: node-exporter
+    metrics-port: https
   name: node-exporter
   namespace: monitoring
 spec:
   clusterIP: None
   ports:
-  - name: web
+  - name: https
     port: 9100
     targetPort: https
   selector:

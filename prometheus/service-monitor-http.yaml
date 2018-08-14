@@ -1,17 +1,17 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: prometheus-metrics-web
+  name: service-monitor-http
   labels:
-    apps: prometheus-metrics-web
+    apps: service-monitor-http
 spec:
-  jobLabel: prometheus-metrics-web
+  jobLabel: service-monitor-http
   selector:
-    prometheus-metrics: web
+    metrics-port: http
   namespaceSelector:
     matchNames:
     - default
     - monitoring
   endpoints:
-  - port: web
-    interval: 15s
+  - port: http
+    interval: 30s

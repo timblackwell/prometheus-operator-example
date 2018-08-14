@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: service-monitor-https
+  name: service-monitor-https
+  namespace: monitoring
+spec:
+  jobLabel: service-monitor-https
+  selector:
+    metrics-port: https
+  namespaceSelector:
+    matchNames:
+    - default
+    - monitoring
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
+    port: https
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true

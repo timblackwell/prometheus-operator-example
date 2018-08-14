@@ -3,12 +3,12 @@ kind: Service
 metadata:
   labels:
     app: kube-state-metrics
-    prometheus-metrics: web
+    metrics-port: http
   name: kube-state-metrics
   namespace: monitoring
 spec:
   ports:
-  - name: web
+  - name: http
     port: 8080
     targetPort: http-metrics
     protocol: TCP

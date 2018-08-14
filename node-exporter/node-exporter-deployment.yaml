@@ -35,9 +35,22 @@ spec:
         - mountPath: /host/sys
           name: sys
           readOnly: false
+      - args:
+        - --secure-listen-address=:9100
+        - --upstream=http://127.0.0.1:9101/
+        image: quay.io/coreos/kube-rbac-proxy:v0.3.1
+        name: kube-rbac-proxy
         ports:
-        - containerPort: 9101
+        - containerPort: 9100
+          hostPort: 9100
           name: https
+        resources:
+          limits:
+            cpu: 20m
+            memory: 40Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
       hostNetwork: true
       hostPID: true
       nodeSelector:
